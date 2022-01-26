@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Life
 {
@@ -17,12 +18,13 @@ namespace Life
             // So I use element-based arrays compare
 
         {
-            for (int x = 0; x < cols; x++)
-                for (int y = 0; y < rows; y++)
-                    if(field[x, y] != f2test[x, y])
-                        return false;
+            /*   for (int x = 0; x < cols; x++)
+                   for (int y = 0; y < rows; y++)
+                       if(field[x, y] != f2test[x, y])
+                           return false;
 
-            return true;
+               return true;*/
+            return Enumerable.SequenceEqual(field.Cast<bool>(), f2test.Cast<bool>());
         }
 
     public GameEngine(int cols, int rows, int density)
@@ -31,6 +33,7 @@ namespace Life
             this.rows = rows;
             field = new bool[cols, rows];
             Random random = new Random();
+
             for (int x = 0; x < cols; x++)
                 for (int y = 0; y < rows; y++)
                     field[x, y] = random.Next(density) == 0;
