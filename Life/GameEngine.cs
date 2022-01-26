@@ -13,17 +13,8 @@ namespace Life
         public bool EndOfDays { get; private set; } = false;
 
         private bool eod(bool[,] f2test)
-        
-            // Arrays.Equals & Enumerable.Equals don't work. Why? I don't know :(
-            // So I use element-based arrays compare
 
-        {
-            /*   for (int x = 0; x < cols; x++)
-                   for (int y = 0; y < rows; y++)
-                       if(field[x, y] != f2test[x, y])
-                           return false;
-
-               return true;*/
+        { 
             return Enumerable.SequenceEqual(field.Cast<bool>(), f2test.Cast<bool>());
         }
 
